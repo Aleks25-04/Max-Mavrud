@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rosé – Max Mavrud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet"/>
+<!-- Preload critical images for faster initial load -->
+<link rel="preload" href="images/img-05.png" as="image">
+<link rel="preload" href="images/img-09.jpg" as="image">
+<link rel="stylesheet" href="styles.css"/>
+<link rel="icon" type="image/png" href="images/img-05.png">
+</head>
+<body class="lang-en">
+<!-- ══ TOPBAR ══ -->
+<header class="topbar">
+  <div class="topbar-brand"><img src="images/img-05.png" alt="Max Mavrud" class="topbar-logo-img"/></div>
+  <nav class="topbar-nav">
+    <button class="tnav-btn active" id="tnav-story" onclick="showPage('home',null);setActiveNav('story')">
+      <span class="ml-en">Our Story</span><span class="ml-al">Historia</span>
+    </button>
+    <button class="tnav-btn" id="tnav-wines" onclick="toggleWinesMenu()">
+      <span class="ml-en">Wines</span><span class="ml-al">Vera</span>
+      <span class="tnav-arrow" id="tnav-arrow">▾</span>
+    </button>
+  </nav>
+  <div class="topbar-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-al" onclick="setLang('al')">AL</button>
+    </div>
+  </div>
+</header>
+
+<!-- Wines dropdown -->
+<div class="wines-dropdown" id="wines-dropdown">
+  <button class="wd-item" onclick="navToWine('wine-bardhe')">
+    <span class="wd-icon">🥂</span>
+    <span class="wd-name">Debine e bardhe</span>
+    <span class="wd-type" data-lang="en">White</span><span class="wd-type" data-lang="al">E Bardhë</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-rose')">
+    <span class="wd-icon">🌹</span>
+    <span class="wd-name">Rosé</span>
+    <span class="wd-type" data-lang="en">Rosé</span><span class="wd-type" data-lang="al">Rozé</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-trio')">
+    <span class="wd-icon">🍇</span>
+    <span class="wd-name">Trio</span>
+    <span class="wd-type" data-lang="en">Red Blend</span><span class="wd-type" data-lang="al">Blend i Kuq</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-neuron')">
+    <span class="wd-icon">⚡</span>
+    <span class="wd-name">Max Neuron</span>
+    <span class="wd-type" data-lang="en">Limited · Red</span><span class="wd-type" data-lang="al">E Kufizuar · E Kuqe</span>
+  </button>
+</div>
+<div class="wines-dropdown-backdrop" id="wd-backdrop" onclick="closeWinesMenu()"></div>
+<div class="main-scroll" id="main-scroll">
+<div class="page active" id="page-wine-rose">
+<div class="wine-hero" style="background:linear-gradient(135deg,var(--deep-wine),#000000)" data-label="ROSÉ">
+    <video class="wine-bg-video" autoplay muted loop playsinline preload="metadata" poster="images/img-17.jpg"><source src="videos/videoplayback.mp4" type="video/mp4"></video>
+    <div class="wine-bottle-row">
+      <img class="wine-bottle-img" src="images/img-09.jpg" alt="Rosé bottle" fetchpriority="high" />
+      <div class="wine-header">
+        <div class="wine-badge"><span class="ml-en">Rosé · Estate · 2023</span><span class="ml-al">Rozé · Pronë · 2023</span></div>
+        <div class="wine-title">Rosé</div>
+        <div class="wine-hero-rating" id="rose-hero-rating"></div>
+
+        <div class="sec-title-row" style="margin-bottom:0">
+          <h3 data-lang="en">Tasting Wheel</h3>
+          <h3 data-lang="al">Diagrami i Shijes</h3>
+        </div>
+        
+        <!-- Tasting Wheel Component -->
+        <div class="tasting-wheel" 
+             data-values="[78, 85, 75, 90, 68]" 
+             data-labels-en='["Red Fruit", "Floral", "Acidity", "Freshness", "Citrus"]'
+             data-labels-al='["Fruta Kuqe", "Lule", "Aciditeti", "Freskia", "Agrume"]'>
+        </div>
+
+        <div class="wine-vintage" data-lang="en">Vintage 2023 · Direct Press</div>
+        <div class="wine-vintage" data-lang="al">Korrja 2023 · Shtypje Direkte</div>
+        <div class="wine-tags"><span class="wine-tag">12% ABV</span><span class="wine-tag" data-lang="en">Pale Copper</span><span class="wine-tag" data-lang="al">Bakri i Zbehtë</span></div>
+      </div>
+    </div>
+  </div>
+<div style="background:linear-gradient(to bottom,var(--deep-wine),var(--deep-wine));padding:clamp(28px,5vw,52px) clamp(20px,5vw,52px)">
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="en">A pale copper rosé — silky, vibrant, light enough for warm evenings yet complex enough to command attention at any table.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="al">Një rozé bakri të zbehtë — e mëndafshtë, e gjallë, e lehtë për mbrëmje të ngrohta por mjaftueshëm komplekse për çdo tryezë.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="en">Produced from red grapes — a blend of autochthonous and international cultivars — in the village of Leçe, Leskovik, at 750 m above sea level. Brilliant, fresh salmon-pink in colour with aromas of flowers and fruits with yellow and red skin. Elegant, fine, harmonious, pleasurable, long-lasting and complex.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="al">Vera Rozé prodhohet nga rrushi i kuq, kombinim kultivarësh autoktonë dhe ndërkombëtarë, në fshatin Leçe, Leskovik, 750 m mbi nivelin e detit. Ngjyrë rozë gërshizë brilante, me lule dhe fruta me lëkurë të verdhë e të kuqe. Elegante, fine, harmonike dhe komplekse.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px">
+<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🌸</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Blend</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Përzierjë</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">Autochthonous & International</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="al">Autoktonë & Ndërkombëtarë</div></div></div>
+<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">📍</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Origin</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Origjina</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">Leçe · Leskovik · 750 m</div></div></div>
+<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🌡️</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Serve At</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Shërbejeni</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">12–13 °C</div></div></div>
+<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🎨</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Colour</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Ngjyra</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">Brilliant salmon-pink</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="al">Rozë gërshizë brilante</div></div></div>
+    </div>
+  </div>
+<div class="wine-body" id="wine-body-rose">
+    <div>
+      <div class="sec-title-row"><h3 data-lang="en">Perfect Pairings</h3><h3 data-lang="al">Shoqërime Perfekte</h3></div>
+      <div class="pairing-grid">
+        <div class="pairing-item"><span class="pairing-emoji">🍖</span><div><div class="pairing-name" data-lang="en">Charcuterie Board</div><div class="pairing-name" data-lang="al">Pjatë Antipasto</div><div class="pairing-sub" data-lang="en">Cured meats, olives, pickles</div><div class="pairing-sub" data-lang="al">Mish i kuruar, ullinj</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🍕</span><div><div class="pairing-name" data-lang="en">Wood-fired Pizza</div><div class="pairing-name" data-lang="al">Pizza me Zjarr Druri</div><div class="pairing-sub" data-lang="en">Margherita, vegetables</div><div class="pairing-sub" data-lang="al">Margeritë, perime</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🍜</span><div><div class="pairing-name" data-lang="en">Provençal Dishes</div><div class="pairing-name" data-lang="al">Pjata Provansale</div><div class="pairing-sub" data-lang="en">Ratatouille, herb chicken</div><div class="pairing-sub" data-lang="al">Perime, pulë me barishte</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🍓</span><div><div class="pairing-name" data-lang="en">Fresh Fruit Desserts</div><div class="pairing-name" data-lang="al">Ëmbëlsira me Fruta</div><div class="pairing-sub" data-lang="en">Strawberry tart, panna cotta</div><div class="pairing-sub" data-lang="al">Tartë luleshtrydhe</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="ratings-section">
+    <div id="rose-summary"></div>
+    <div class="review-form" id="rose-form">
+      <div class="review-form-title" data-lang="en">Rate this wine</div><div class="review-form-title" data-lang="al">Vlerësoni këtë verë</div>
+      <div class="star-input"><input type="radio" name="rose-r" id="rose-r5" value="5"><label for="rose-r5">★</label><input type="radio" name="rose-r" id="rose-r4" value="4"><label for="rose-r4">★</label><input type="radio" name="rose-r" id="rose-r3" value="3"><label for="rose-r3">★</label><input type="radio" name="rose-r" id="rose-r2" value="2"><label for="rose-r2">★</label><input type="radio" name="rose-r" id="rose-r1" value="1"><label for="rose-r1">★</label></div>
+      <button class="review-submit" onclick="submitReview('rose')"><span class="ml-en">Submit Rating</span><span class="ml-al">Dërgo Vlerësimin</span></button>
+    </div>
+  </div>
+</div>
+</div><!-- /main-scroll -->
+<!-- BACK TO TOP -->
+<button id="btt" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M9 4L4 9M9 4L14 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<script src="main.js"></script>
+</body>
+</html>

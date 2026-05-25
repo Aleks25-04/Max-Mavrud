@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Max Mavrud – Fine Wines</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet"/>
+<!-- Preload critical images for faster initial load -->
+<link rel="preload" href="images/img-01.jpg" as="image">
+<link rel="preload" href="images/img-02.jpg" as="image">
+<link rel="preload" href="images/img-03.jpg" as="image">
+<link rel="preload" href="images/img-04.jpg" as="image">
+<link rel="preload" href="images/img-05.png" as="image">
+<link rel="stylesheet" href="styles.css"/>
+<link rel="icon" type="image/png" href="images/img-05.png">
+</head>
+<body class="lang-en" style="background:var(--warm-white);color:var(--deep-wine)">
+<!-- ══ TOPBAR ══ -->
+<header class="topbar">
+  <div class="topbar-brand"><img src="images/img-05.png" alt="Max Mavrud" class="topbar-logo-img"/></div>
+  <nav class="topbar-nav">
+    <button class="tnav-btn active" id="tnav-story" onclick="showPage('home',null);setActiveNav('story')">
+      <span class="ml-en">Our Story</span><span class="ml-al">Historia</span>
+    </button>
+    <button class="tnav-btn" id="tnav-wines" onclick="toggleWinesMenu()">
+      <span class="ml-en">Wines</span><span class="ml-al">Vera</span>
+      <span class="tnav-arrow" id="tnav-arrow">▾</span>
+    </button>
+  </nav>
+  <div class="topbar-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-al" onclick="setLang('al')">AL</button>
+    </div>
+  </div>
+</header>
+
+<!-- Wines dropdown -->
+<div class="wines-dropdown" id="wines-dropdown">
+  <button class="wd-item" onclick="navToWine('wine-bardhe')">
+    <span class="wd-icon">🥂</span>
+    <span class="wd-name">Debine e bardhe</span>
+    <span class="wd-type" data-lang="en">White</span><span class="wd-type" data-lang="al">E Bardhë</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-rose')">
+    <span class="wd-icon">🌹</span>
+    <span class="wd-name">Rosé</span>
+    <span class="wd-type" data-lang="en">Rosé</span><span class="wd-type" data-lang="al">Rozé</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-trio')">
+    <span class="wd-icon">🍇</span>
+    <span class="wd-name">Trio</span>
+    <span class="wd-type" data-lang="en">Red Blend</span><span class="wd-type" data-lang="al">Blend i Kuq</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-neuron')">
+    <span class="wd-icon">⚡</span>
+    <span class="wd-name">Max Neuron</span>
+    <span class="wd-type" data-lang="en">Limited · Red</span><span class="wd-type" data-lang="al">E Kufizuar · E Kuqe</span>
+  </button>
+</div>
+<div class="wines-dropdown-backdrop" id="wd-backdrop" onclick="closeWinesMenu()"></div>
+<div class="main-scroll" id="main-scroll">
+<div class="page active" id="page-home">
+
+  <div class="ch1">
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-overlay"></div>
+    <!-- Background video (free vineyard/nature footage via public CDN) -->
+    
+    
+
+    <svg class="ch1-accent-svg" viewBox="0 0 220 220" fill="none" aria-hidden="true" style="z-index:2">
+      <circle cx="110" cy="110" r="100" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+      <circle cx="110" cy="110" r="70" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
+      <line x1="10" y1="110" x2="210" y2="110" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+      <line x1="110" y1="10" x2="110" y2="210" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+      <line x1="39" y1="39" x2="181" y2="181" stroke="rgba(201,168,76,0.07)" stroke-width="1"/>
+      <line x1="181" y1="39" x2="39" y2="181" stroke="rgba(201,168,76,0.07)" stroke-width="1"/>
+    </svg>
+    <div class="ch1-ghost" aria-hidden="true">M</div>
+    <div class="ch1-inner">
+      <div class="ch1-eyebrow-row">
+        <div class="ch1-eyebrow-line"></div>
+        <span class="ch1-eyebrow" data-lang="en">Est. 1987 · Leskovik, Albania</span>
+        <span class="ch1-eyebrow" data-lang="al">Themeluar 1987 · Leskovik, Shqipëri</span>
+        <div class="ch1-eyebrow-line"></div>
+      </div>
+      <div class="ch1-wordmark">
+        <img src="images/img-05.png" alt="Max Mavrud" class="ch1-logo-img"/>
+      </div>
+      <div class="ch1-tagline" data-lang="en">A heroic vineyard. An ancient grape.</div>
+      <div class="ch1-tagline" data-lang="al">Vreshtë heroike. Rrush i lashtë.</div>
+      <div class="ch1-rule"><div class="ch1-rule-line"></div><div class="ch1-rule-diamond"></div><div class="ch1-rule-line"></div></div>
+    </div>
+    <div class="ch1-scroll" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span class="scroll-lbl" data-lang="en">Scroll</span>
+      <span class="scroll-lbl" data-lang="al">Shiko</span>
+    </div>
+  </div>
+
+  <div class="ch2">
+    <div class="ch2-bg-quote" aria-hidden="true">"</div>
+    <p class="ch2-quote" data-lang="en">We don’t just pour wine — we share stories, views, and a piece of our heart.</p>
+    <p class="ch2-quote" data-lang="al">Ne nuk shërbejmë thjesht verë — ne ndajmë histori, peizazhe dhe një pjesë të zemrës sonë.</p>
+    <p class="ch2-attr" data-lang="en">— The Fejzulla Family, Leskovik</p>
+    <p class="ch2-attr" data-lang="al">— Familja Fejzulla, Leskovik</p>
+  </div>
+
+
+  <div class="estate-hero-img">
+    <img src="images/img-01.jpg" alt="Max Mavrud vineyard aerial view" />
+    <div class="estate-hero-caption">
+      <span data-lang="en">750 m · Leskovik · Albania</span>
+      <span data-lang="al">750 m · Leskovik · Shqipëri</span>
+    </div>
+  </div>
+
+  <div class="ch3">
+    <div class="ch3-tag"><span class="ml-en">Chapter I — The Beginning</span><span class="ml-al">Kapitulli I — Fillimi</span></div>
+    <h2 class="ch3-heading"><span class="ml-en">A Bet on the<br/>Mavrud Grape</span><span class="ml-al">Një Bast mbi<br/>Rrushin Mavrud</span></h2>
+    <div class="ch3-divider"></div>
+    <p class="ch3-body" data-lang="en">In 2008, Maksim Fejzulla and his wife Diana came to the mountains near Leskovik to build a small hydropower plant. What they found instead was 6 hectares of abandoned land, 48,000 vines, and a calling. Today the estate has grown to 16 hectares — putting Leskovik on the world wine map.</p>
+    <p class="ch3-body" data-lang="al">Në vitin 2008, Maksim Fejzulla dhe bashkëshortja e tij Diana erdhën në malet pranë Leskovikut për të ndërtuar një hidrocentral të vogël. Ç'u gjetën atje ishte 6 hektarë tokë e braktisur, 48,000 hardhi dhe një thirrje. Sot prona ka arritur 16 hektarë — duke vendosur Leskovikun në hartën botërore të verës.</p>
+    <img class="ch3-photo" src="images/img-02.jpg" alt="Max Mavrud estate at golden hour" />
+  </div>
+
+  <div class="ch3" style="background:var(--cream);padding-top:0">
+    <div class="ch3-tag"><span class="ml-en">Chapter II — The Philosophy</span><span class="ml-al">Kapitulli II — Filozofia</span></div>
+    <h2 class="ch3-heading"><span class="ml-en">Minimal Hands,<br/>Maximum Truth</span><span class="ml-al">Duar Minimale,<br/>E Vërteta Maksimale</span></h2>
+    <div class="ch3-divider"></div>
+    <p class="ch3-body" data-lang="en">The grapes reach an average of 23% Brix sugar at optimal ripeness. The result is not just a bottle — it is a record of a season, a soil, and the strong mountain winds that carry the scent of pine forests across the Vjosa valley.</p>
+    <p class="ch3-body" data-lang="al">Rrushi arrin mesatarisht 23% sheqer Brix në pjekurinë optimale. Rezultati nuk është thjesht një shishe — është një regjistrim i një sezoni, një toke, dhe erërave të forta malore që bartin aromën e pyjeve të pishave nëpër luginën e Vjosës.</p>
+    <img class="ch3-photo" src="images/img-06.jpg" alt="Mavrud grapes on the vine" />
+  </div>
+
+  <div class="stats-band">
+    <div class="stat-item"><div class="stat-num">750m</div><div class="stat-lbl" data-lang="en">Altitude</div><div class="stat-lbl" data-lang="al">Lartësia</div></div>
+    <div class="stat-div"></div>
+    <div class="stat-item"><div class="stat-num">16ha</div><div class="stat-lbl" data-lang="en">Vineyard</div><div class="stat-lbl" data-lang="al">Vreshti</div></div>
+    <div class="stat-div"></div>
+    <div class="stat-item"><div class="stat-num">23°</div><div class="stat-lbl" data-lang="en">Brix at Harvest</div><div class="stat-lbl" data-lang="al">Brix në Korrje</div></div>
+    <div class="stat-div"></div>
+    <div class="stat-item"><div class="stat-num">2008</div><div class="stat-lbl" data-lang="en">Founded</div><div class="stat-lbl" data-lang="al">Themeluar</div></div>
+  </div>
+
+
+  <div class="estate-full-img">
+    <img src="images/img-07.jpg" alt="Max Mavrud vineyard rows" />
+  </div>
+
+  <div class="ch5">
+    <div class="ch5-header">
+      <div>
+        <div class="eyebrow" data-lang="en" style="margin-bottom:8px">The Terroir of Leskovik</div>
+        <div class="eyebrow" data-lang="al" style="margin-bottom:8px">Terrori i Leskovikut</div>
+        <div class="heading-serif" style="font-size:clamp(24px,5vw,38px)" data-lang="en">What the Mountain<br/>Gives the Wine</div>
+        <div class="heading-serif" style="font-size:clamp(24px,5vw,38px)" data-lang="al">Çfarë i Jep Mali<br/>Verës</div>
+      </div>
+      <div class="ch5-big3" aria-hidden="true">03</div>
+    </div>
+    <div class="t-cards">
+      <div class="t-card">
+        <div class="t-num">01</div><span class="t-icon">🌱</span>
+        <div class="t-name" data-lang="en">Limestone Soil</div>
+        <div class="t-name" data-lang="al">Tokë Gëlqerore</div>
+        <div class="t-line"></div>
+        <div class="t-desc" data-lang="en">Calcareous limestone at pH 7.2 — the same rock that forms the ceiling of Lake Neuron, lending mineral depth to every wine.</div>
+        <div class="t-desc" data-lang="al">Gëlqeror kalkarik me pH 7.2 — i njëjti shkëmb që formon tavanin e Liqenit Neuron, duke i dhënë thellësi minerale çdo vere.</div>
+      </div>
+      <div class="t-card t-card--mid">
+        <div class="t-num">02</div><span class="t-icon">🏔️</span>
+        <div class="t-name" data-lang="en">Mountain Climate</div>
+        <div class="t-name" data-lang="al">Klimë Malore</div>
+        <div class="t-line"></div>
+        <div class="t-desc" data-lang="en">750–780 m altitude · cool nights · strong winds · a 3-metre rainwater reservoir for sustainable irrigation.</div>
+        <div class="t-desc" data-lang="al">750–780 m lartësi · net të freskëta · erëra të forta · rezervuar uji shiu 3 metra për ujitje të qëndrueshme.</div>
+      </div>
+      <div class="t-card">
+        <div class="t-num">03</div><span class="t-icon">🌊</span>
+        <div class="t-name" data-lang="en">River Vjosa</div>
+        <div class="t-name" data-lang="al">Lumi Vjosa</div>
+        <div class="t-line"></div>
+        <div class="t-desc" data-lang="en">Europe's last wild river flows near the estate, moderating temperatures and providing the pristine water source that sustains the ecosystem.</div>
+        <div class="t-desc" data-lang="al">Lumi i fundit i egër i Europës rrjedh pranë pronës, duke moderuar temperaturat dhe duke siguruar burimin e ujit të pastër.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch6">
+    <div class="ch6-bg" aria-hidden="true">CRAFT</div>
+    <div class="ch6-eyebrow" data-lang="en">The Way We Work</div>
+    <div class="ch6-eyebrow" data-lang="al">Mënyra Jonë e Punës</div>
+    <div class="ch6-heading" data-lang="en">Three Principles.<br/>One Wine.</div>
+    <div class="ch6-heading" data-lang="al">Tre Parime.<br/>Një Verë.</div>
+    <div class="ch6-pillars">
+      <div class="ch6-pillar">
+        <div class="ch6-pillar-num">I</div>
+        <div class="ch6-pillar-title" data-lang="en">Hand Harvest</div>
+        <div class="ch6-pillar-title" data-lang="al">Vjelja me Dorë</div>
+        <div class="ch6-pillar-desc" data-lang="en">Every grape selected by hand. No machine can taste. No algorithm can feel when a cluster is ready.</div>
+        <div class="ch6-pillar-desc" data-lang="al">Çdo kokërr zgjidhet me dorë. Asnjë makinë nuk mund të shijojë. Asnjë algoritëm nuk ndjek pjekurinë.</div>
+      </div>
+      <div class="ch6-pillar">
+        <div class="ch6-pillar-num">II</div>
+        <div class="ch6-pillar-title" data-lang="en">Native Fermentation</div>
+        <div class="ch6-pillar-title" data-lang="al">Fermentim Natyral</div>
+        <div class="ch6-pillar-desc" data-lang="en">Wild yeasts from the vineyard itself drive fermentation — slower, unpredictable, and far more honest than any commercial alternative.</div>
+        <div class="ch6-pillar-desc" data-lang="al">Maja e egër nga vetë vreshti drejton fermentimin — më i ngadaltë, i paparashikueshëm dhe shumë më i sinqertë.</div>
+      </div>
+      <div class="ch6-pillar">
+        <div class="ch6-pillar-num">III</div>
+        <div class="ch6-pillar-title" data-lang="en">Time as Ingredient</div>
+        <div class="ch6-pillar-title" data-lang="al">Koha si Përbërës</div>
+        <div class="ch6-pillar-desc" data-lang="en">Oak and amphora aging is not a formula. It is a conversation between wine and vessel — we simply listen.</div>
+        <div class="ch6-pillar-desc" data-lang="al">Plakja nuk është formulë. Është bisedë ndërmjet verës dhe enës — ne thjesht dëgjojmë.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="neuron-block">
+    <div class="neuron-eyebrow"><span class="ml-en">World Record · Discovered 2025</span><span class="ml-al">Rekord Botëror · Zbuluar 2025</span></div>
+    <div class="neuron-heading"><span class="ml-en">127 Metres<br/>Beneath Your Glass</span><span class="ml-al">127 Metra<br/>Nën Gotën Tuaj</span></div>
+    <div class="neuron-rule"></div>
+    <p class="neuron-body" data-lang="en">Directly below the Max Mavrud vineyards lies the world's largest known subterranean thermal lake — Lake Neuron. Discovered in 2025 by a team of geologists, this hidden wonder sits 127 metres underground in a vast limestone cavern. The same calcareous rock that forms its ceiling is the soil that nourishes every vine above it, lending the wines a distinctive mineral depth that cannot be replicated anywhere else on earth.</p>
+    <p class="neuron-body" data-lang="al">Pikërisht nën vreshtat e Max Mavrud ndodhet liqeni më i madh termal nëntokësor — Liqeni Neuron. I zbuluar në 2025, ndodhet 127 metra nën tokë. I njëjti shkëmb gëlqeror që formon tavanin e tij është toka që ushqen çdo hardhje, duke i dhënë verërave thellësi minerale unike.</p>
+    <div class="neuron-cta" onclick="window.location.href='wine-neuron.html'"><span class="ml-en">→ Discover Max Neuron</span><span class="ml-al">→ Zbulo Max Neuron</span></div>
+    <div class="neuron-depth">
+      <div class="n-chip"><span class="n-chip-icon">🏔️</span><div><div class="n-chip-label" data-lang="en">Altitude</div><div class="n-chip-label" data-lang="al">Lartësia</div><div class="n-chip-val">750–780 m</div></div></div>
+      <div class="n-chip"><span class="n-chip-icon">🌊</span><div><div class="n-chip-label" data-lang="en">Lake depth</div><div class="n-chip-label" data-lang="al">Thellësia e liqenit</div><div class="n-chip-val">127 m underground</div></div></div>
+        <div class="n-chip"><span class="n-chip-icon">🌱</span><div><div class="n-chip-label" data-lang="en">Soil</div><div class="n-chip-label" data-lang="al">Toka</div><div class="n-chip-val">Limestone pH 7.2</div></div></div>
+      <div class="n-chip"><span class="n-chip-icon">🌿</span><div><div class="n-chip-label" data-lang="en">Energy</div><div class="n-chip-label" data-lang="al">Energjia</div><div class="n-chip-val" data-lang="en">Renewable</div><div class="n-chip-val" data-lang="al">E rinovueshme</div></div></div>
+    </div>
+  </div>
+
+    <!-- Photo Gallery (inline, expandable) -->
+    <div class="gallery-section" id="photo-gallery">
+      <div class="sec-title-row"><h3 data-lang="en">Photo Gallery</h3><h3 data-lang="al">Galeria</h3></div>
+      <div class="gallery-header">
+          <button id="gallery-toggle" aria-expanded="false" class="gallery-toggle-btn">
+            <span class="ml-en">Open Gallery</span>
+            <span class="ml-al">Hap Galerinë</span>
+          </button>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-thumb" data-index="0"><img src="images/img-01.jpg" alt="Vineyard aerial view" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="1"><img src="images/img-02.jpg" alt="Estate at golden hour" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="2"><img src="images/img-03.jpg" alt="Winemaking detail" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="3"><img src="images/img-04.jpg" alt="Cork detail" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="4"><img src="images/img-06.jpg" alt="Grapes on vine" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="5"><img src="images/img-07.jpg" alt="Vineyard rows" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="6"><img src="images/img-08.jpg" alt="Debine bottle" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="7"><img src="images/img-09.jpg" alt="Cellar scene" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="8"><img src="images/img-10.jpg" alt="Tasting table" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="9"><img src="images/img-11.jpg" alt="Harvest scene" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="10"><img src="images/img-12.jpg" alt="Vineyard detail" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="11"><img src="images/img-13.jpg" alt="Winery architecture" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="12"><img src="images/img-14.jpg" alt="Wine tasting set" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="13"><img src="images/img-15.jpg" alt="Hand harvest" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="14"><img src="images/img-16.jpg" alt="Barrel room" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="15"><img src="images/img-17.jpg" alt="Estate panorama" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="16"><img src="images/img-18.jpeg" alt="Wine cellar interior" loading="lazy"></button>
+          <button class="gallery-thumb" data-index="17"><img src="images/img-19.jpeg" alt="Vineyard landscape" loading="lazy"></button>
+        </div>
+    </div>
+
+
+  <div class="ff-block">
+    <div class="ff-eyebrow" data-lang="en">Technical Details</div>
+    <div class="ff-eyebrow" data-lang="al">Detaje Teknike</div>
+    <div class="ff-heading" data-lang="en">Fast Facts</div>
+    <div class="ff-heading" data-lang="al">Fakte të Shpejta</div>
+    <div class="ff-grid">
+      <div class="ff-item"><span class="ff-key" data-lang="en">Altitude</span><span class="ff-key" data-lang="al">Lartësia</span><span class="ff-val">750–780 m</span></div>
+      <div class="ff-item"><span class="ff-key" data-lang="en">Soil</span><span class="ff-key" data-lang="al">Toka</span><span class="ff-val" data-lang="en">Calcareous limestone</span><span class="ff-val" data-lang="al">Gëlqeror</span></div>
+      <div class="ff-item"><span class="ff-key">Soil pH</span><span class="ff-val">7.2</span></div>
+      <div class="ff-item"><span class="ff-key" data-lang="en">Grapes</span><span class="ff-key" data-lang="al">Rrushi</span><span class="ff-val">Mavrud, Debinë, Syrah, Merlot</span></div>
+      <div class="ff-item"><span class="ff-key" data-lang="en">Harvest</span><span class="ff-key" data-lang="al">Korrja</span><span class="ff-val" data-lang="en">Hand-picked · Sep–Oct</span><span class="ff-val" data-lang="al">Manuale · Shtat–Tetor</span></div>
+      <div class="ff-item"><span class="ff-key" data-lang="en">Oak Aging</span><span class="ff-key" data-lang="al">Plakja</span><span class="ff-val" data-lang="en">French & Hungarian barrique</span><span class="ff-val" data-lang="al">Francez & Hungarez</span></div>
+      <div class="ff-item"><span class="ff-key" data-lang="en">Water</span><span class="ff-key" data-lang="al">Uji</span><span class="ff-val" data-lang="en">3m rainwater reservoir</span><span class="ff-val" data-lang="al">Rezervuar 3m shiu</span></div>
+      <div class="ff-item"><span class="ff-key">Vivino</span><span class="ff-val">4.3 / 5 ⭐</span></div>
+    </div>
+  </div>
+
+  <div class="agro-block">
+    <div class="agro-header">
+      <div>
+        <div class="agro-eyebrow" data-lang="en">Plan Your Visit</div>
+        <div class="agro-eyebrow" data-lang="al">Planifikoni Vizitën</div>
+        <div class="agro-heading" data-lang="en">The Estate<br/>Experience</div>
+        <div class="agro-heading" data-lang="al">Eksperienca<br/>e Pronës</div>
+      </div>
+      <div class="agro-price-box">
+        <div class="agro-price-num">€25</div>
+        <div class="agro-price-lbl" data-lang="en">per person</div>
+        <div class="agro-price-lbl" data-lang="al">për person</div>
+      </div>
+    </div>
+    <div class="agro-steps">
+      <div class="agro-step">
+        <div class="agro-step-num">01</div><span class="agro-step-icon">🍇</span>
+        <div class="agro-step-title" data-lang="en">Vineyard Tour</div>
+        <div class="agro-step-title" data-lang="al">Vizitë në Vreshta</div>
+        <div class="agro-step-desc" data-lang="en">Behind-the-scenes walk through high-altitude vineyards and the production cellar.</div>
+        <div class="agro-step-desc" data-lang="al">Shëtitje nëpër vreshtat alpine dhe bodrumin e prodhimit.</div>
+      </div>
+      <div class="agro-step agro-step--accent">
+        <div class="agro-step-num">02</div><span class="agro-step-icon">🍷</span>
+        <div class="agro-step-title" data-lang="en">Seated Tasting</div>
+        <div class="agro-step-title" data-lang="al">Degustim i Ulur</div>
+        <div class="agro-step-desc" data-lang="en">Four estate wines paired with artisanal local cheeses from the Leskovik mountains.</div>
+        <div class="agro-step-desc" data-lang="al">Katër verëra të shoqëruara me djathëra artizanalë vendas.</div>
+      </div>
+      <div class="agro-step">
+        <div class="agro-step-num">03</div><span class="agro-step-icon">🫕</span>
+        <div class="agro-step-title" data-lang="en">Traditional Meal</div>
+        <div class="agro-step-title" data-lang="al">Vakt Tradicional</div>
+        <div class="agro-step-desc" data-lang="en">Byrek, lakrore and fresh garden vegetables — the flavours of the Albanian highlands.</div>
+        <div class="agro-step-desc" data-lang="al">Byrek, lakrore dhe perime të freskëta — shijet e maleve shqiptare.</div>
+      </div>
+      <div class="agro-step">
+        <div class="agro-step-num">04</div><span class="agro-step-icon">🛏️</span>
+        <div class="agro-step-title" data-lang="en">Stay the Night</div>
+        <div class="agro-step-title" data-lang="al">Qëndroni një Natë</div>
+        <div class="agro-step-desc" data-lang="en">Three guest rooms with mountain views. Wake up to the Vjosa valley at sunrise.</div>
+        <div class="agro-step-desc" data-lang="al">Tre dhoma me pamje malore. Zgjohuni me luginën e Vjosës në agim.</div>
+      </div>
+    </div>
+    <div class="agro-harvest">
+      <span class="agro-harvest-icon">🗓️</span>
+      <div>
+        <div class="agro-harvest-lbl" data-lang="en">Best time to visit</div>
+        <div class="agro-harvest-lbl" data-lang="al">Koha më e mirë</div>
+        <div class="agro-harvest-val" data-lang="en">September – October · Harvest Season</div>
+        <div class="agro-harvest-val" data-lang="al">Shtator – Tetor · Sezoni i Korrjes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-block">
+    <div class="contact-eyebrow-row">
+      <span class="contact-eyebrow" data-lang="en">Find Us</span>
+      <span class="contact-eyebrow" data-lang="al">Na Gjeni</span>
+      <div class="contact-rule"></div>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="c-lbl" data-lang="en">Location</div><div class="c-lbl" data-lang="al">Vendndodhja</div>
+        <div class="c-val-big">Leskovik, Albania</div>
+        <div class="c-val-sm" data-lang="en">Near the town plaza<br/>Statue of Jani Vreto</div>
+        <div class="c-val-sm" data-lang="al">Afër sheshit · Statuja e Jani Vretos</div>
+      </div>
+      <div>
+        <div class="c-lbl" data-lang="en">Hours</div><div class="c-lbl" data-lang="al">Orari</div>
+        <div class="c-val-big" data-lang="en">Daily · 9:00 AM →</div>
+        <div class="c-val-big" data-lang="al">Çdo ditë · 9:00 →</div>
+        <div class="c-val-sm" data-lang="en">Tasting tours · €25 / person</div>
+        <div class="c-val-sm" data-lang="al">Turne shijimi · €25 / person</div>
+      </div>
+      <div>
+        <div class="c-lbl" data-lang="en">Contact</div><div class="c-lbl" data-lang="al">Kontakt</div>
+        <a class="c-phone" href="tel:+35567461344">+355 (0) 67 46 13 445</a>
+        <a class="c-email" href="mailto:info@maxmavrud.com">info@maxmavrud.com</a>
+        <div class="c-vivino"><span>⭐</span><span class="c-vivino-num">4.3 / 5</span><span class="c-vivino-lbl">Vivino</span></div>
+      </div>
+    </div>
+
+  <div class="contact-social">
+    <div class="c-lbl" data-lang="en">Follow Us</div>
+    <div class="c-lbl" data-lang="al">Na Ndiqni</div>
+    <div class="contact-social-links">
+      <a href="https://www.instagram.com/maxmavrud?igsh=MTJibHhwaXI2MGlpOQ==" target="_blank" rel="noopener" class="contact-social-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span>@maxmavrud</span>
+      </a>
+      <a href="https://www.facebook.com/share/1E1bK2gjHK/" target="_blank" rel="noopener" class="contact-social-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span>Max Mavrud</span>
+      </a>
+    </div>
+  </div>
+  </div>
+
+</div><!-- /page-home -->
+</div><!-- /main-scroll -->
+<!-- BACK TO TOP -->
+<button id="btt" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M9 4L4 9M9 4L14 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<script src="main.js" defer></script>
+</body>
+</html>

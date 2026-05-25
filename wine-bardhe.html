@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Debinë e Bardhë – Max Mavrud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet"/>
+<!-- Preload critical images for faster initial load -->
+<link rel="preload" href="images/img-05.png" as="image">
+<link rel="preload" href="images/img-08.jpg" as="image">
+<link rel="stylesheet" href="styles.css"/>
+<link rel="icon" type="image/png" href="images/img-05.png">
+</head>
+<body class="lang-en">
+<!-- ══ TOPBAR ══ -->
+<header class="topbar">
+  <div class="topbar-brand"><img src="images/img-05.png" alt="Max Mavrud" class="topbar-logo-img"/></div>
+  <nav class="topbar-nav">
+    <button class="tnav-btn active" id="tnav-story" onclick="showPage('home',null);setActiveNav('story')">
+      <span class="ml-en">Our Story</span><span class="ml-al">Historia</span>
+    </button>
+    <button class="tnav-btn" id="tnav-wines" onclick="toggleWinesMenu()">
+      <span class="ml-en">Wines</span><span class="ml-al">Vera</span>
+      <span class="tnav-arrow" id="tnav-arrow">▾</span>
+    </button>
+  </nav>
+  <div class="topbar-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-al" onclick="setLang('al')">AL</button>
+    </div>
+  </div>
+</header>
+
+<!-- Wines dropdown -->
+<div class="wines-dropdown" id="wines-dropdown">
+  <button class="wd-item" onclick="navToWine('wine-bardhe')">
+    <span class="wd-icon">🥂</span>
+    <span class="wd-name">Debine e bardhe</span>
+    <span class="wd-type" data-lang="en">White</span><span class="wd-type" data-lang="al">E Bardhë</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-rose')">
+    <span class="wd-icon">🌹</span>
+    <span class="wd-name">Rosé</span>
+    <span class="wd-type" data-lang="en">Rosé</span><span class="wd-type" data-lang="al">Rozé</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-trio')">
+    <span class="wd-icon">🍇</span>
+    <span class="wd-name">Trio</span>
+    <span class="wd-type" data-lang="en">Red Blend</span><span class="wd-type" data-lang="al">Blend i Kuq</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-neuron')">
+    <span class="wd-icon">⚡</span>
+    <span class="wd-name">Max Neuron</span>
+    <span class="wd-type" data-lang="en">Limited · Red</span><span class="wd-type" data-lang="al">E Kufizuar · E Kuqe</span>
+  </button>
+</div>
+<div class="wines-dropdown-backdrop" id="wd-backdrop" onclick="closeWinesMenu()"></div>
+<div class="main-scroll" id="main-scroll">
+<div class="page active" id="page-wine-bardhe">
+<div class="wine-hero" style="background:linear-gradient(135deg,var(--deep-wine),#000000)" data-label="BLANC">
+    <video class="wine-bg-video" autoplay muted loop playsinline preload="metadata" poster="images/img-17.jpg"><source src="videos/videoplayback.mp4" type="video/mp4"></video>
+    <div class="wine-bottle-row">
+      <img class="wine-bottle-img" src="images/img-08.jpg" alt="Debine e Bardhe bottle" fetchpriority="high" />
+      <div class="wine-header">
+        <div class="wine-badge"><span class="ml-en">White · Estate · 2022</span><span class="ml-al">E Bardhë · Pronë · 2022</span></div>
+        <div class="wine-title">Debine e bardhe</div>
+        <div class="wine-hero-rating" id="bardhe-hero-rating"></div>
+
+        <div class="sec-title-row" style="margin-bottom:0">
+          <h3 data-lang="en">Tasting Wheel</h3>
+          <h3 data-lang="al">Diagrami i Shijes</h3>
+        </div>
+
+        <!-- Tasting Wheel Component -->
+        <div class="tasting-wheel" 
+             data-values="[84, 75, 88, 66, 72]" 
+             data-labels-en='["Pear", "Floral", "Acidity", "Mineral", "Citrus"]'
+             data-labels-al='["Dardhë", "Lule", "Aciditeti", "Minerale", "Agrume"]'>
+        </div>
+
+        <div class="wine-vintage" data-lang="en">Vintage 2022 · Debina 100%</div>
+        <div class="wine-vintage" data-lang="al">Korrja 2022 · Debina 100%</div>
+        <div class="wine-tags"><span class="wine-tag">Stainless Steel</span><span class="wine-tag">12% ABV</span><span class="wine-tag" data-lang="en">Hand Harvested</span><span class="wine-tag" data-lang="al">Vjelje Manuale</span></div>
+        <div class="wine-desc" data-lang="en">The white of the Albanian highlands.</div>
+        <div class="wine-desc" data-lang="al">E bardha e maleve shqiptare.</div>
+      </div>
+    </div>
+  </div>
+<div style="background:linear-gradient(to bottom,var(--deep-wine),var(--deep-wine));padding:clamp(28px,5vw,52px) clamp(20px,5vw,52px)">
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="en">A luminous white born from the rare indigenous Debinë grape — aromatic and alive with mountain freshness. Pale gold in the glass, carrying the spirit of the highlands.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="en">Debinë e Bardhë is an autochthonous cultivar exclusive to the Leskovik region, grown at 750 m above sea level. After hand harvesting and cryomaceration, the wine ferments in temperature-controlled stainless steel tanks, preserving delicate aromas of yellow fruits and citrus flowers. Straw-coloured with subtle greenish reflections — dry, warm, fresh, long-lasting, complex, harmonious, elegant and fine.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="al">Një e bardhë e ndriçueshme nga rrushi i rrallë autokton Debinë — aromatike dhe e gjallë me freskinë e maleve. E artë e çelët në gotë, duke mbartur shpirtin e lartësive.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="al">Debina e Bardhë është kultivar autokton i rajonit të Leskovikut, i kultivuar në fshatin Leskovik, 750 m mbi nivelin e detit. Pas vjeljes manuale dhe kriomaçerimit, vera fermentohet në tanke çeliku inox duke ruajtur aromat delikate të frutave të verdha dhe luleve të agrumeve. Me ngjyrë kashte, me reflektime të lehta gjelbërake — e thatë, e ngrohtë, e freskët, me qëndrueshmëri të gjatë, komplekse, harmonike, elegante dhe e imët.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px">
+<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🍇</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Grape</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Rrushi</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">Debinë e Bardhë 100%</div></div></div>
+<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🏔️</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Altitude</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Lartësia</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">750 m · Leskovik</div></div></div>
+<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🌡️</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Serve At</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Shërbejeni</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">10–11 °C</div></div></div>
+<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🍇</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Vinification</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Vinifikimi</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">Stainless steel</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="al">Çelik inox</div></div></div>
+    </div>
+  </div>
+<div class="wine-body" id="wine-body-bardhe">
+    <div>
+      <div class="sec-title-row"><h3 data-lang="en">Perfect Pairings</h3><h3 data-lang="al">Shoqërime Perfekte</h3></div>
+      <div class="pairing-grid">
+        <div class="pairing-item"><span class="pairing-emoji">🦪</span><div><div class="pairing-name" data-lang="en">Oysters & Shellfish</div><div class="pairing-name" data-lang="al">Goca deti & Guaska</div><div class="pairing-sub" data-lang="en">Fresh, briny, raw bar</div><div class="pairing-sub" data-lang="al">Të freskëta, kripore</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🐟</span><div><div class="pairing-name" data-lang="en">Pan-fried Fish</div><div class="pairing-name" data-lang="al">Peshk i Skuqur</div><div class="pairing-sub" data-lang="en">Sea bass, trout, sole</div><div class="pairing-sub" data-lang="al">Levrek, trofta, shol</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🧀</span><div><div class="pairing-name" data-lang="en">Soft White Cheese</div><div class="pairing-name" data-lang="al">Djathë i Bardhë i Butë</div><div class="pairing-sub" data-lang="en">Feta, ricotta, goat</div><div class="pairing-sub" data-lang="al">Feta, ricotë, dhi</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🥗</span><div><div class="pairing-name" data-lang="en">Light Summer Salads</div><div class="pairing-name" data-lang="al">Sallata të Lehta</div><div class="pairing-sub" data-lang="en">Herbs, lemon dressing</div><div class="pairing-sub" data-lang="al">Barishte, veshje limoni</div></div></div>
+      </div>
+    </div>
+  </div>
+<div class="ratings-section">
+    <div id="bardhe-summary"></div>
+    <div class="review-form" id="bardhe-form">
+      <div class="review-form-title" data-lang="en">Rate this wine</div><div class="review-form-title" data-lang="al">Vlerësoni këtë verë</div>
+      <div class="star-input"><input type="radio" name="bardhe-r" id="bardhe-r5" value="5"><label for="bardhe-r5">★</label><input type="radio" name="bardhe-r" id="bardhe-r4" value="4"><label for="bardhe-r4">★</label><input type="radio" name="bardhe-r" id="bardhe-r3" value="3"><label for="bardhe-r3">★</label><input type="radio" name="bardhe-r" id="bardhe-r2" value="2"><label for="bardhe-r2">★</label><input type="radio" name="bardhe-r" id="bardhe-r1" value="1"><label for="bardhe-r1">★</label></div>
+      <button class="review-submit" onclick="submitReview('bardhe')"><span class="ml-en">Submit Rating</span><span class="ml-al">Dërgo Vlerësimin</span></button>
+    </div>
+  </div>
+</div>
+</div><!-- /main-scroll -->
+<!-- BACK TO TOP -->
+<button id="btt" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M9 4L4 9M9 4L14 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<script src="main.js"></script>
+</body>
+</html>

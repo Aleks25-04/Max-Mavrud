@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Max Neuron – Max Mavrud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet"/>
+<!-- Preload critical images for faster initial load -->
+<link rel="preload" href="images/img-05.png" as="image">
+<link rel="preload" href="images/img-11.jpg" as="image">
+<link rel="stylesheet" href="styles.css"/>
+<link rel="stylesheet" href="wheel-tasting-notes.css"/>
+<link rel="icon" type="image/png" href="images/img-05.png">
+</head>
+<body class="lang-en">
+<!-- ══ TOPBAR ══ -->
+<header class="topbar">
+  <div class="topbar-brand"><img src="images/img-05.png" alt="Max Mavrud" class="topbar-logo-img"/></div>
+  <nav class="topbar-nav">
+    <button class="tnav-btn active" id="tnav-story" onclick="showPage('home',null);setActiveNav('story')">
+      <span class="ml-en">Our Story</span><span class="ml-al">Historia</span>
+    </button>
+    <button class="tnav-btn" id="tnav-wines" onclick="toggleWinesMenu()">
+      <span class="ml-en">Wines</span><span class="ml-al">Vera</span>
+      <span class="tnav-arrow" id="tnav-arrow">▾</span>
+    </button>
+  </nav>
+  <div class="topbar-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-al" onclick="setLang('al')">AL</button>
+    </div>
+  </div>
+</header>
+
+<!-- Wines dropdown -->
+<div class="wines-dropdown" id="wines-dropdown">
+  <button class="wd-item" onclick="navToWine('wine-bardhe')">
+    <span class="wd-icon">🥂</span>
+    <span class="wd-name">Debine e bardhe</span>
+    <span class="wd-type" data-lang="en">White</span><span class="wd-type" data-lang="al">E Bardhë</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-rose')">
+    <span class="wd-icon">🌹</span>
+    <span class="wd-name">Rosé</span>
+    <span class="wd-type" data-lang="en">Rosé</span><span class="wd-type" data-lang="al">Rozé</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-trio')">
+    <span class="wd-icon">🍇</span>
+    <span class="wd-name">Trio</span>
+    <span class="wd-type" data-lang="en">Red Blend</span><span class="wd-type" data-lang="al">Blend i Kuq</span>
+  </button>
+  <button class="wd-item" onclick="navToWine('wine-neuron')">
+    <span class="wd-icon">⚡</span>
+    <span class="wd-name">Max Neuron</span>
+    <span class="wd-type" data-lang="en">Limited · Red</span><span class="wd-type" data-lang="al">E Kufizuar · E Kuqe</span>
+  </button>
+</div>
+<div class="wines-dropdown-backdrop" id="wd-backdrop" onclick="closeWinesMenu()"></div>
+<div class="main-scroll" id="main-scroll">
+<div class="page active" id="page-wine-neuron">
+<div class="wine-hero" style="background:linear-gradient(135deg,var(--deep-wine),var(--black))" data-label="NEURON">
+    <video class="wine-bg-video" autoplay muted loop playsinline preload="metadata" poster="images/img-17.jpg"><source src="videos/videoplayback.mp4" type="video/mp4"></video>
+    <div class="wine-bottle-row">
+      <img class="wine-bottle-img" src="images/img-11.jpg" alt="Max Neuron bottle" fetchpriority="high" />
+      <div class="wine-header">
+<div class="wine-badge"><span class="ml-en">Red · Mavrud · Leskovik · Limited</span><span class="ml-al">E Kuqe · Mavrud · Leskovik · E Kufizuar</span></div>
+<div class="wine-title">Max <span style="color:var(--gold-light);font-style:italic">Neuron</span></div>
+        <div class="wine-hero-rating" id="neuron-hero-rating"></div>
+        
+        <div class="sec-title-row" style="margin-bottom:0">
+          <h3 data-lang="en">Tasting Wheel</h3>
+          <h3 data-lang="al">Diagrami i Shijes</h3>
+        </div>
+        
+        <!-- Tasting Wheel Component -->
+        <div class="tasting-wheel" 
+             data-values="[90, 85, 82, 95, 75]" 
+             data-labels-en='["Dark Fruit", "Spice", "Tannin", "Mineral", "Oak"]'
+             data-labels-al='["Fruta Erreta", "Erëza", "Tanine", "Minerale", "Lis"]'>
+        </div>
+
+<div class="wine-vintage" data-lang="en">Mavrud 100% · 750–780 m · Leskovik, Albania</div>
+
+        <div class="wine-vintage" data-lang="al">Mavrud 100% · 750–780 m · Leskovik, Shqipëri</div>
+        <div class="wine-tags"><span class="wine-tag">Inox + Barrique</span><span class="wine-tag" data-lang="en">Hand Harvested</span><span class="wine-tag" data-lang="al">Vjelje Manuale</span><span class="wine-tag">800 bottles</span></div>
+        <div class="wine-desc" data-lang="en">Energy. Connection.<br/>The nerve of the mountain.</div>
+        <div class="wine-desc" data-lang="al">Energji. Lidhje.<br/>Nervi i malit.</div>
+      </div>
+    </div>
+  </div>
+<div style="background:linear-gradient(to bottom,var(--deep-wine),var(--deep-wine));padding:clamp(28px,5vw,52px) clamp(20px,5vw,52px)">
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="en">Max Neuron begins with the manual harvest of grapes from vines growing at 750–780 m in Leskovik. Fermentation in temperature-controlled stainless-steel tanks preserves natural aromas while extracting colour and tannins. Part matures in French and Hungarian oak barrique — developing vanilla, spice, and softened tannins — before being lightly stabilised and bottled, where it continues to evolve.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="al">Max Neuron fillon me vjeljen manuale të rrushit nga vreshtat në 750–780 m. Fermentimi në tanke çeliku inox ruan aromat natyrale. Pjesa maturohet në barrique franceze dhe hungareze — duke zhvilluar vanilje, erëza dhe tanine të zbuta — para se të mbushet në shishe ku vazhdon të zhvillohet.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px">
+<div style="background:rgba(122,184,255,.07);border:1px solid rgba(122,184,255,.16);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🏔️</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Altitude</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Lartësia</div><div style="font-size:11px;color:rgba(245,240,232,.5)">750–780 m</div></div></div>
+<div style="background:rgba(122,184,255,.07);border:1px solid rgba(122,184,255,.16);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🌊</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Lake Neuron</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Liqeni Neuron</div><div style="font-size:11px;color:rgba(245,240,232,.5)">127 m deep</div></div></div>
+<div style="background:rgba(122,184,255,.07);border:1px solid rgba(122,184,255,.16);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">💨</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Ventilation</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Ajrimi</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">Excellent</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="al">Shumë i mirë</div></div></div>
+<div style="background:rgba(122,184,255,.07);border:1px solid rgba(122,184,255,.16);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🌱</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Mineral Soil</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Tokë Minerale</div><div style="font-size:11px;color:rgba(245,240,232,.5)">pH 7.2</div></div></div>
+    </div>
+  </div>
+  <div class="wine-body" style="background:var(--cream)">
+    <div>
+      <div class="sec-title-row"><h3 data-lang="en">Perfect Pairings</h3><h3 data-lang="al">Shoqërime Perfekte</h3></div>
+      <div class="pairing-grid">
+        <div class="pairing-item"><span class="pairing-emoji">🥩</span><div><div class="pairing-name" data-lang="en">Red Meat</div><div class="pairing-name" data-lang="al">Mish i Kuq</div><div class="pairing-sub" data-lang="en">Grilled or roasted</div><div class="pairing-sub" data-lang="al">Grilë ose i pjekur</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🔥</span><div><div class="pairing-name">BBQ</div><div class="pairing-sub" data-lang="en">Smoky, charred cuts</div><div class="pairing-sub" data-lang="al">Pjekje me tym</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🥘</span><div><div class="pairing-name" data-lang="en">Albanian Dishes</div><div class="pairing-name" data-lang="al">Gatime Shqiptare</div><div class="pairing-sub" data-lang="en">Traditional, slow-cooked</div><div class="pairing-sub" data-lang="al">Tradicionale, të ziera</div></div></div>
+        <div class="pairing-item"><span class="pairing-emoji">🧀</span><div><div class="pairing-name" data-lang="en">Hard Cheeses</div><div class="pairing-name" data-lang="al">Djathëra të Fortë</div><div class="pairing-sub" data-lang="en">Aged mountain varieties</div><div class="pairing-sub" data-lang="al">Varietet malore</div></div></div>
+      </div>
+    </div>
+  </div>
+<div class="ratings-section" style="background:var(--cream);border-top:1px solid rgba(74,14,26,.08)">
+    <div id="neuron-summary"></div>
+    <div class="review-form" id="neuron-form">
+      <div class="review-form-title" data-lang="en">Rate this wine</div><div class="review-form-title" data-lang="al">Vlerësoni këtë verë</div>
+      <div class="star-input"><input type="radio" name="neuron-r" id="neuron-r5" value="5"><label for="neuron-r5">★</label><input type="radio" name="neuron-r" id="neuron-r4" value="4"><label for="neuron-r4">★</label><input type="radio" name="neuron-r" id="neuron-r3" value="3"><label for="neuron-r3">★</label><input type="radio" name="neuron-r" id="neuron-r2" value="2"><label for="neuron-r2">★</label><input type="radio" name="neuron-r" id="neuron-r1" value="1"><label for="neuron-r1">★</label></div>
+      <button class="review-submit" onclick="submitReview('neuron')"><span class="ml-en">Submit Rating</span><span class="ml-al">Dërgo Vlerësimin</span></button>
+    </div>
+  </div>
+</div>
+</div><!-- /main-scroll -->
+<!-- BACK TO TOP -->
+<button id="btt" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M9 4L4 9M9 4L14 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<script src="main.js"></script>
+</body>
+</html>

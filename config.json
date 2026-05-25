@@ -1,0 +1,91 @@
+{
+  "project": "Max Mavrud – Fine Wines Website",
+  "description": "Luxury wine company website with multi-language support and elegant design",
+  "version": "1.0.0",
+  "type": "Static Website",
+  "languages": ["en", "al"],
+  "sections": [
+    "Hero Landing",
+    "Manifesto",
+    "History",
+    "Terroir",
+    "Philosophy",
+    "Lake Neuron",
+    "Fast Facts",
+    "Agrotourism",
+    "Contact",
+    "Wines Collection"
+  ],
+  "pages": [
+    {
+      "id": "home",
+      "title": "Home",
+      "path": "index.html"
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "path": "index.html#page-about"
+    },
+    {
+      "id": "wines",
+      "title": "Wines",
+      "path": "index.html#page-wines"
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "path": "index.html#page-contact"
+    }
+  ],
+  "colors": {
+    "cream": "#f5f0e8",
+    "warmWhite": "#faf8f3",
+    "burgundy": "#4d0e1a",
+    "deepWine": "#2d080a",
+    "gold": "#c9a84c",
+    "goldLight": "#d4b369"
+  },
+  "fonts": {
+    "serif": "Cormorant Garamond, Libre Baskerville",
+    "sansSerif": "Raleway"
+  },
+  "breakpoints": {
+    "mobile": "360px",
+    "small": "540px",
+    "medium": "560px",
+    "tablet": "580px",
+    "large": "620px",
+    "desktop": "800px"
+  },
+  "files": {
+    "html": "index.html (5.2 KB)",
+    "css": "css/styles.css (26.5 KB)",
+    "js": "js/app.js (6.8 KB)",
+    "docs": "README.md"
+  },
+  "company": {
+    "name": "Max Mavrud",
+    "type": "Fine Wines Producer",
+    "founded": 1993,
+    "location": "Lake Neuron, Mirditë, Albania",
+    "vineyardSize": "45 hectares",
+    "annualProduction": "12,000 bottles",
+    "elevation": "850m above sea level",
+    "phone": "+355 (0) 69 200 0000",
+    "email": "hello@maxmavrud.al",
+    "vivinoRating": "4.7 stars"
+  },
+  "features": [
+    "Multi-language support (English & Albanian)",
+    "Responsive design (mobile-first)",
+    "Smooth scroll behavior",
+    "Auto-hiding topbar",
+    "Drawer navigation",
+    "Back-to-top button",
+    "CSS Grid & Flexbox layouts",
+    "Fluid typography with clamp()",
+    "Accessibility features",
+    "No external dependencies"
+  ]
+}
