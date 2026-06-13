@@ -1,7 +1,7 @@
 // ── Navigation & Language State ──
 // This function ensures the topbar and language settings are correct
 // even when using the browser's back/forward buttons.
-function updateGlobalState() {
+function updateGlobalState(event) {
   const savedLang = localStorage.getItem('mm_lang');
   if (savedLang) document.body.className = 'lang-' + savedLang;
 
@@ -12,10 +12,26 @@ function updateGlobalState() {
 
   if (s) s.classList.toggle('active', !isWine);
   if (w) w.classList.toggle('active', isWine);
+
+  // Fix back-button flicker: if page is restored from cache, force close the menu instantly.
+  const dd = document.getElementById('wines-dropdown');
+  if (dd) {
+    if (event && event.persisted) {
+      dd.style.transition = 'none'; // Stop transition so it doesn't "slide" closed
+      closeWinesMenu();
+      void dd.offsetHeight;         // Force a layout reflow to apply the change immediately
+      dd.style.transition = '';     // Restore original transition behavior
+    } else {
+      closeWinesMenu();
+    }
+  }
 }
 
 // 'pageshow' fires on initial load and when the page is restored from cache.
 window.addEventListener('pageshow', updateGlobalState);
+// Run immediately to catch initial rendering
+updateGlobalState();
+
 
 /* First-visit logo overlay logic */
 function initLogoOverlay() {
@@ -179,9 +195,11 @@ function toggleWinesMenu() {
   }
 }
 function closeWinesMenu() {
-  document.getElementById('wines-dropdown').classList.remove('open');
-  document.getElementById('wd-backdrop').classList.remove('open');
+  const dd = document.getElementById('wines-dropdown');
+  const bd = document.getElementById('wd-backdrop');
   const arrow = document.getElementById('tnav-arrow');
+  if (dd) dd.classList.remove('open');
+  if (bd) bd.classList.remove('open');
   if (arrow) arrow.classList.remove('open');
 }
 function navToWine(id) {
@@ -189,9 +207,6 @@ function navToWine(id) {
     console.log('navToWine ->', id);
     closeWinesMenu();
     showPage(id, null);
-    // Mark wines btn as active
-    document.querySelectorAll('.tnav-btn').forEach(b => b.classList.remove('active'));
-    const wbtn = document.getElementById('tnav-wines'); if (wbtn) wbtn.classList.add('active');
   }catch(e){
     console.error('navToWine error', e);
   }
