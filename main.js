@@ -13,8 +13,12 @@ function updateGlobalState() {
   if (s) s.classList.toggle('active', !isWine);
   if (w) w.classList.toggle('active', isWine);
 
-  // Always force-close the menu instantly when updating state (prevents flicker on back button)
-  closeWinesMenu(true);
+  // Surgical fix for back-button flicker:
+  // Only force an instant reflow if the dropdown is actually open (prevents lag on clean loads)
+  const dd = document.getElementById('wines-dropdown');
+  if (dd && dd.classList.contains('open')) {
+    closeWinesMenu(true);
+  }
 }
 
 // 'pageshow' fires on initial load and when the page is restored from cache.
@@ -175,6 +179,12 @@ function prefetchWines() {
     }
   });
 }
+
+// Start prefetching once the browser is idle to avoid competing with the initial page load
+window.addEventListener('load', () => {
+  if (window.requestIdleCallback) requestIdleCallback(() => prefetchWines());
+  else setTimeout(prefetchWines, 2000);
+});
 
 function toggleWinesMenu() {
   const dd = document.getElementById('wines-dropdown');
