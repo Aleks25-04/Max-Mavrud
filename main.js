@@ -1,17 +1,21 @@
-// Set active nav based on current page
-(function(){
+// ── Navigation & Language State ──
+// This function ensures the topbar and language settings are correct
+// even when using the browser's back/forward buttons.
+function updateGlobalState() {
   const savedLang = localStorage.getItem('mm_lang');
-  if(savedLang) {
-    document.body.className = 'lang-' + savedLang;
-  }
-  var page=(window.location.pathname.split('/').pop()||'index.html');
-  var isWine=page.startsWith('wine-');
-  document.addEventListener('DOMContentLoaded',function(){
-    var s=document.getElementById('tnav-story'),w=document.getElementById('tnav-wines');
-    if(s)s.classList.toggle('active',!isWine);
-    if(w)w.classList.toggle('active',isWine);
-  });
-})();
+  if (savedLang) document.body.className = 'lang-' + savedLang;
+
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  const isWine = path.startsWith('wine-');
+  const s = document.getElementById('tnav-story');
+  const w = document.getElementById('tnav-wines');
+
+  if (s) s.classList.toggle('active', !isWine);
+  if (w) w.classList.toggle('active', isWine);
+}
+
+// 'pageshow' fires on initial load and when the page is restored from cache.
+window.addEventListener('pageshow', updateGlobalState);
 
 /* First-visit logo overlay logic */
 function initLogoOverlay() {
