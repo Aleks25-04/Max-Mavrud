@@ -13,22 +13,18 @@ function updateGlobalState(event) {
   if (s) s.classList.toggle('active', !isWine);
   if (w) w.classList.toggle('active', isWine);
 
-  // Fix back-button flicker: if page is restored from cache, force close the menu instantly.
-  const dd = document.getElementById('wines-dropdown');
-  if (dd) {
-    if (event && event.persisted) {
-      dd.style.transition = 'none'; // Stop transition so it doesn't "slide" closed
-      closeWinesMenu();
-      void dd.offsetHeight;         // Force a layout reflow to apply the change immediately
-      dd.style.transition = '';     // Restore original transition behavior
-    } else {
-      closeWinesMenu();
-    }
-  }
+  // Force an instant, non-animated close whenever the state is updated (especially on back button)
+  closeWinesMenu(true);
 }
 
 // 'pageshow' fires on initial load and when the page is restored from cache.
 window.addEventListener('pageshow', updateGlobalState);
+
+// 'pagehide' ensures we clean up the UI state before the browser snapshots the page for cache.
+window.addEventListener('pagehide', () => {
+  closeWinesMenu(true);
+});
+
 // Run immediately to catch initial rendering
 updateGlobalState();
 
@@ -194,25 +190,43 @@ function toggleWinesMenu() {
     prefetchWines(); // Start loading wine pages in background
   }
 }
-function closeWinesMenu() {
+
+function closeWinesMenu(instant = false) {
   const dd = document.getElementById('wines-dropdown');
   const bd = document.getElementById('wd-backdrop');
   const arrow = document.getElementById('tnav-arrow');
-  if (dd) dd.classList.remove('open');
-  if (bd) bd.classList.remove('open');
-  if (arrow) arrow.classList.remove('open');
+  if (!dd) return;
+
+  if (instant) {
+    // Disable transitions to prevent the "sliding up" animation from being cached or seen
+    dd.style.transition = 'none';
+    if (bd) bd.style.transition = 'none';
+    
+    dd.classList.remove('open');
+    if (bd) bd.classList.remove('open');
+    if (arrow) arrow.classList.remove('open');
+
+    void dd.offsetHeight; // Force layout reflow
+    dd.style.transition = ''; // Restore transitions for future interactions
+    if (bd) bd.style.transition = '';
+  } else {
+    dd.classList.remove('open');
+    if (bd) bd.classList.remove('open');
+    if (arrow) arrow.classList.remove('open');
+  }
 }
+
 function navToWine(id) {
   try{
     console.log('navToWine ->', id);
-    closeWinesMenu();
+    closeWinesMenu(true); // Close instantly before navigation
     showPage(id, null);
   }catch(e){
     console.error('navToWine error', e);
   }
 }
 function setActiveNav(which) {
-  closeWinesMenu();
+  closeWinesMenu(true); // Close instantly before navigation
   document.querySelectorAll('.tnav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tnav-' + which).classList.add('active');
 }
@@ -340,6 +354,8 @@ function showPage(id,el){
     var pageMap={'home':'index.html','wine-bardhe':'wine-bardhe.html','wine-rose':'wine-rose.html','wine-trio':'wine-trio.html','wine-neuron':'wine-neuron.html'};
     var t=pageMap[id];
     if(t){
+      // Critical: Ensure menu is closed instantly so the "open" state isn't cached
+      closeWinesMenu(true); 
       window.location.assign(t);
     } else {
       console.warn('showPage: unknown id', id);
