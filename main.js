@@ -146,6 +146,18 @@ window.selectLangAndClose = function(lang) {
   });
 })();
 // ── Top nav ──
+function prefetchWines() {
+  const wines = ['wine-bardhe.html', 'wine-rose.html', 'wine-trio.html', 'wine-neuron.html'];
+  wines.forEach(url => {
+    if (!document.querySelector(`link[href="${url}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = url;
+      document.head.appendChild(link);
+    }
+  });
+}
+
 function toggleWinesMenu() {
   const dd = document.getElementById('wines-dropdown');
   const bd = document.getElementById('wd-backdrop');
@@ -159,6 +171,7 @@ function toggleWinesMenu() {
     dd.classList.add('open');
     bd.classList.add('open');
     arrow.classList.add('open');
+    prefetchWines(); // Start loading wine pages in background
   }
 }
 function closeWinesMenu() {
