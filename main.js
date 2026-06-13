@@ -1,7 +1,7 @@
 // ── Navigation & Language State ──
 // This function ensures the topbar and language settings are correct
 // even when using the browser's back/forward buttons.
-function updateGlobalState(event) {
+function updateGlobalState() {
   const savedLang = localStorage.getItem('mm_lang');
   if (savedLang) document.body.className = 'lang-' + savedLang;
 
@@ -13,12 +13,14 @@ function updateGlobalState(event) {
   if (s) s.classList.toggle('active', !isWine);
   if (w) w.classList.toggle('active', isWine);
 
-  // Force an instant, non-animated close whenever the state is updated (especially on back button)
+  // Always force-close the menu instantly when updating state (prevents flicker on back button)
   closeWinesMenu(true);
 }
 
 // 'pageshow' fires on initial load and when the page is restored from cache.
-window.addEventListener('pageshow', updateGlobalState);
+window.addEventListener('pageshow', () => {
+  updateGlobalState();
+});
 
 // 'pagehide' ensures we clean up the UI state before the browser snapshots the page for cache.
 window.addEventListener('pagehide', () => {
@@ -198,35 +200,32 @@ function closeWinesMenu(instant = false) {
   if (!dd) return;
 
   if (instant) {
-    // Disable transitions to prevent the "sliding up" animation from being cached or seen
+    // Temporarily kill transitions to ensure "Closed" state is snapped by browser cache
     dd.style.transition = 'none';
     if (bd) bd.style.transition = 'none';
-    
-    dd.classList.remove('open');
-    if (bd) bd.classList.remove('open');
-    if (arrow) arrow.classList.remove('open');
+  }
 
-    void dd.offsetHeight; // Force layout reflow
-    dd.style.transition = ''; // Restore transitions for future interactions
+  dd.classList.remove('open');
+  if (bd) bd.classList.remove('open');
+  if (arrow) arrow.classList.remove('open');
+
+  if (instant) {
+    void dd.offsetHeight; // Force reflow
+    dd.style.transition = '';
     if (bd) bd.style.transition = '';
-  } else {
-    dd.classList.remove('open');
-    if (bd) bd.classList.remove('open');
-    if (arrow) arrow.classList.remove('open');
   }
 }
 
 function navToWine(id) {
   try{
-    console.log('navToWine ->', id);
-    closeWinesMenu(true); // Close instantly before navigation
+    closeWinesMenu(true);
     showPage(id, null);
   }catch(e){
     console.error('navToWine error', e);
   }
 }
 function setActiveNav(which) {
-  closeWinesMenu(true); // Close instantly before navigation
+  closeWinesMenu();
   document.querySelectorAll('.tnav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tnav-' + which).classList.add('active');
 }
@@ -355,7 +354,7 @@ function showPage(id,el){
     var t=pageMap[id];
     if(t){
       // Critical: Ensure menu is closed instantly so the "open" state isn't cached
-      closeWinesMenu(true); 
+      closeWinesMenu(true);
       window.location.assign(t);
     } else {
       console.warn('showPage: unknown id', id);
