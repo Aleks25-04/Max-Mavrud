@@ -37,22 +37,22 @@
 <!-- Wines dropdown -->
 <div class="wines-dropdown" id="wines-dropdown">
   <button class="wd-item" onclick="navToWine('wine-bardhe')">
-    <span class="wd-icon">🥂</span>
+    <span class="wd-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8 22h8M12 11v11M19 7a7 7 0 0 0-14 0c0 2 0 9 7 9s7-7 7-9Z"/></svg></span>
     <span class="wd-name">Debine e bardhe</span>
     <span class="wd-type" data-lang="en">White</span><span class="wd-type" data-lang="al">E Bardhë</span>
   </button>
   <button class="wd-item" onclick="navToWine('wine-rose')">
-    <span class="wd-icon">🌹</span>
+    <span class="wd-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 10a4 4 0 0 0-4-4c-1 0-4 1-4 4s3 7 4 7 4-4 4-7ZM7 22s0-4 5-4 5 4 5 4M12 18V7"/></svg></span>
     <span class="wd-name">Rosé</span>
     <span class="wd-type" data-lang="en">Rosé</span><span class="wd-type" data-lang="al">Rozé</span>
   </button>
   <button class="wd-item" onclick="navToWine('wine-trio')">
-    <span class="wd-icon">🍇</span>
+    <span class="wd-icon"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="16" cy="16" r="3"/><circle cx="8" cy="16" r="3"/><circle cx="12" cy="20" r="3"/><path d="M12 9V5"/></svg></span>
     <span class="wd-name">Trio</span>
     <span class="wd-type" data-lang="en">Red Blend</span><span class="wd-type" data-lang="al">Blend i Kuq</span>
   </button>
   <button class="wd-item" onclick="navToWine('wine-neuron')">
-    <span class="wd-icon">⚡</span>
+    <span class="wd-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
     <span class="wd-name">Max Neuron</span>
     <span class="wd-type" data-lang="en">Limited · Red</span><span class="wd-type" data-lang="al">E Kufizuar · E Kuqe</span>
   </button>
@@ -65,7 +65,10 @@
     <div class="wine-bottle-row">
       <img class="wine-bottle-img" src="images/img-10.jpg" alt="Trio bottle" fetchpriority="high" />
       <div class="wine-header">
-        <div class="wine-badge"><span class="ml-en">Red · Blend · Barrel Select · 2021</span><span class="ml-al">E Kuqe · Blend · Zgjedhur · 2021</span></div>
+        <div class="wine-badge">
+          <span class="ml-en">Red · Blend · <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 10c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4ZM12 8v8M8 8v8M16 8v8"/></svg> Barrel Select · 2021</span>
+          <span class="ml-al">E Kuqe · Blend · <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 10c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4ZM12 8v8M8 8v8M16 8v8"/></svg> Zgjedhur · 2021</span>
+        </div>
         <div class="wine-title">Trio</div>
         <div class="wine-hero-rating" id="trio-hero-rating"></div>
 
@@ -81,19 +84,55 @@
              data-labels-al='["Fruta Kuqe", "Vanilje", "Erëza", "Trupi", "Taninet"]'>
         </div>
 
-        <div class="wine-vintage">Mavrud · Cabernet · Merlot</div>
-        <div class="wine-tags"><span class="wine-tag">14mo Oak</span><span class="wine-tag">13.5% ABV</span></div>
+        <div class="wine-vintage" data-lang="en">Vintage 2021 · Mavrud · Cabernet · Merlot</div>
+        <div class="wine-vintage" data-lang="al">Korrja 2021 · Mavrud · Cabernet · Merlot</div>
+        <div class="wine-tags">
+          <span class="wine-tag"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 10c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4ZM12 8v8M8 8v8M16 8v8"/></svg> 4mo Oak</span>
+          <span class="wine-tag"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8 22h8M12 11v11M19 7a7 7 0 0 0-14 0c0 2 0 9 7 9s7-7 7-9Z"/></svg> 13.5% ABV</span>
+        </div>
       </div>
     </div>
   </div>
 <div style="background:linear-gradient(to bottom,var(--deep-wine),var(--deep-wine));padding:clamp(28px,5vw,52px) clamp(20px,5vw,52px)">
-    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="en">Three grapes, one vision. Mavrud provides the soul, Cabernet the structure, and Merlot the roundness. Greater than the sum of its parts. A red wine from a blend of 50% Mavrud, 20% Syrah and 30% Merlot — grown at 750–780 m on the limestone slopes of Leskovik. Deep ruby red with prolonged, intense aromas of red and violet flowers, dark forest fruits, spices, pepper and herbs. Aged 4 months in French and Hungarian oak barrique. Long-lasting, warm, dry, tannic and harmonious.</p>
-    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);max-width:640px" data-lang="al">Verë e kuqe nga kombinim i kultivarëve 50% Mavrud, 20% Syrah dhe 30% Merlot. Ngjyrë e kuqe rubini të dendur me aroma të zgjatura, intensive — lule të kuqe e vjollcë, fruta të zeza pyllit, erëza, spec, barishte. Barrikuar 4 muaj në lis Francez dhe Hungarez.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px">
-<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🍇</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Blend</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Përzierjë</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">50% Mavrud · 20% Syrah · 30% Merlot</div></div></div>
-<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🪵</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Oak Ageing</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Plakja në Lisi</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">4 months · French & Hungarian</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="al">4 muaj · Francez & Hungarez</div></div></div>
-<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">🌡️</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Serve At</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Shërbejeni</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">18–20 °C</div></div></div>
-<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">⏱️</span><div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="en">Decant</div><div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px" data-lang="al">Dekantojeni</div><div style="font-size:11px;color:rgba(245,240,232,.5)" data-lang="en">30 min</div></div></div>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);width:100%;text-align:justify" data-lang="en">Three grapes, one vision. Mavrud provides the soul, Cabernet the structure, and Merlot the roundness. Greater than the sum of its parts. A red wine from a blend of 50% Mavrud, 20% Syrah and 30% Merlot — grown at 750–780 m on the limestone slopes of Leskovik. Deep ruby red with prolonged, intense aromas of red and violet flowers, dark forest fruits, spices, pepper and herbs. Aged 4 months in French and Hungarian oak barrique. Long-lasting, warm, dry, tannic and harmonious.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.62);width:100%;text-align:justify" data-lang="al">Verë e kuqe nga kombinim i kultivarëve 50% Mavrud, 20% Syrah dhe 30% Merlot. Ngjyrë e kuqe rubini të dendur me aroma të zgjatura, intensive — lule të kuqe e vjollcë, fruta të zeza pyllit, erëza, spec, barishte. Barrikuar 4 muaj në lis Francez dhe Hungarez.</p>
+    <div class="spec-grid">
+      <div class="spec-chip">
+        <div class="spec-icon-circle">
+          <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="16" cy="16" r="3"/><circle cx="8" cy="16" r="3"/><circle cx="12" cy="20" r="3"/><path d="M12 9V5"/></svg>
+        </div>
+        <div>
+          <div class="spec-label"><span class="ml-en">Blend</span><span class="ml-al">Përzierjë</span></div>
+          <div class="spec-val">50% Mavrud · 20% Syrah · 30% Merlot</div>
+        </div>
+      </div>
+      <div class="spec-chip">
+        <div class="spec-icon-circle">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 10c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4ZM12 8v8M8 8v8M16 8v8"/></svg>
+        </div>
+        <div>
+          <div class="spec-label"><span class="ml-en">Oak Ageing</span><span class="ml-al">Plakja në Lisi</span></div>
+          <div class="spec-val"><span class="ml-en">4 months · French & Hungarian</span><span class="ml-al">4 muaj · Francez & Hungarez</span></div>
+        </div>
+      </div>
+      <div class="spec-chip">
+        <div class="spec-icon-circle">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 4v10.5a4.5 4.5 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>
+        </div>
+        <div>
+          <div class="spec-label"><span class="ml-en">Serve At</span><span class="ml-al">Shërbejeni</span></div>
+          <div class="spec-val">18–20 °C</div>
+        </div>
+      </div>
+      <div class="spec-chip">
+        <div class="spec-icon-circle">
+          <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <div class="spec-label"><span class="ml-en">Decant</span><span class="ml-al">Dekantojeni</span></div>
+          <div class="spec-val">30 min</div>
+        </div>
+      </div>
     </div>
   </div>
 <div class="wine-body" id="wine-body-trio">
@@ -115,6 +154,9 @@
       <button class="review-submit" onclick="submitReview('trio')"><span class="ml-en">Submit Rating</span><span class="ml-al">Dërgo Vlerësimin</span></button>
     </div>
   </div>
+  <footer class="site-footer">
+    <div class="footer-copy">© 2025 MAX MAVRUD. All rights reserved.</div>
+  </footer>
 </div>
 </div><!-- /main-scroll -->
 <!-- BACK TO TOP -->

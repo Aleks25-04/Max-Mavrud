@@ -308,7 +308,6 @@ function showPage(id,el){
     var pageMap={'home':'index.html','wine-bardhe':'wine-bardhe.html','wine-rose':'wine-rose.html','wine-trio':'wine-trio.html','wine-neuron':'wine-neuron.html'};
     var t=pageMap[id];
     if(t){
-      // use assign to ensure a proper navigation and history entry
       window.location.assign(t);
     } else {
       console.warn('showPage: unknown id', id);
@@ -377,12 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const pe = document.getElementById('photo-estate2');
   if(pc) pc.style.backgroundImage = "url('images/img-04.jpg')";
   if(pe) pe.style.backgroundImage = "url('images/img-07.jpg')";
-
-  // Smoothly reveal the active page
-  const activePage = document.querySelector('.page.active');
-  if(activePage) {
-    requestAnimationFrame(() => activePage.classList.add('visible'));
-  }
 
   initLogoOverlay();
   initTastingWheels();

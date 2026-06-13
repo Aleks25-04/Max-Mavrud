@@ -1,4 +1,5 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+p{text-align:justify}
 :root{
   /* Allowed palette: white, black, cherry, gold */
   --black:#000000;
@@ -150,9 +151,8 @@ body{font-family:'Raleway',sans-serif;background:var(--warm-white);color:var(--d
 .main-scroll::-webkit-scrollbar-thumb{background:rgba(74,14,26,.2);border-radius:2px}
 
 /* ══ PAGES ══ */
-.page{display:none; opacity: 0; transform: translateY(15px); transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);}
+.page{display:none;}
 .page.active{display:block;}
-.page.visible{opacity: 1; transform: translateY(0);}
 
 /* ══ LANGUAGE ══ */
 [data-lang]{display:none}
@@ -168,7 +168,7 @@ body.lang-al .ml-al{display:inline}
 ══════════════════════════════ */
 .eyebrow{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .heading-serif{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--burgundy);line-height:1.15}
-.body-serif{font-family:'Libre Baskerville',serif;font-size:14px;line-height:1.9;color:rgba(45,8,16,.7)}
+.body-serif{font-family:'Libre Baskerville',serif;font-size:14px;line-height:1.9;color:rgba(45,8,16,.7);text-align:justify}
 .gold-line{width:52px;height:1px;background:var(--gold);margin:20px 0}
 .diamond-rule{display:flex;align-items:center;gap:14px;justify-content:center;margin:24px 0}
 .diamond-rule-line{flex:1;max-width:80px;height:1px;background:rgba(201,168,76,.35)}
@@ -213,34 +213,84 @@ body.lang-al .ml-al{display:inline}
 
 /* Perfect Pairings (all wine pages) - one straight row on desktop */
 .page .pairing-grid{
-  display:flex;
-  flex-wrap:nowrap;
-  justify-content:flex-start;
-  align-items:stretch;
-  gap:12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.page .pairing-item{
-  flex:0 0 auto;
-}
-
-/* Keep text compact so items fit */
-.page .pairing-name{font-size:15px;color:#000000 !important; -webkit-text-fill-color:#000000 !important}
-.page .pairing-sub{font-size:10.5px;color:rgba(45,8,16,.75) !important}
-.page .pairing-item{padding:15px 18px}
-
-@media(max-width:900px){
-  /* On narrower screens allow wrap so it doesn't overflow */
-  .page .pairing-grid{
-    flex-wrap:wrap;
+@media (max-width: 560px) {
+  .page .pairing-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-.pairing-item{background:var(--cream);border:1px solid rgba(74,14,26,.08);padding:13px;display:flex;align-items:center;gap:12px;transition:border-color .2s}
-.pairing-item:hover{border-color:var(--gold)}
-.pairing-emoji{font-size:26px;flex-shrink:0}
-.pairing-name{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--burgundy);font-weight:600}
-.pairing-sub{font-size:10px;color:rgba(45,8,16,.5);margin-top:1px}
+.page .pairing-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid rgba(74, 14, 26, 0.06);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.page .pairing-item::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; bottom: 0; width: 0;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.page .pairing-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 12px 30px rgba(74, 14, 26, 0.07);
+}
+
+.page .pairing-item:hover::before {
+  width: 4px;
+}
+
+.pairing-emoji {
+  width: 52px;
+  height: 52px;
+  background: var(--warm-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+}
+
+.page .pairing-item:hover .pairing-emoji {
+  transform: scale(1.1) rotate(8deg);
+  background: var(--cream);
+}
+
+.page .pairing-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--burgundy) !important;
+  -webkit-text-fill-color: var(--burgundy) !important;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.page .pairing-sub {
+  font-size: 11px;
+  color: rgba(45, 8, 16, 0.5) !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
 
 /* section title with rule */
 .sec-title-row{display:flex;align-items:center;gap:12px;margin-bottom:18px}
@@ -299,8 +349,20 @@ body.lang-al .wine-badge .ml-al{display:inline}
 .wine-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,8vw,56px);font-weight:300;color:var(--cream);line-height:1.05;margin-bottom:6px}
 .wine-vintage{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--gold);margin-bottom:16px}
 .wine-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
-.wine-tag{font-size:10px;letter-spacing:.1em;color:rgba(245,240,232,.55);background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);padding:4px 9px}
-.wine-desc{font-family:'Libre Baskerville',serif;font-style:italic;font-size:13px;line-height:1.8;color:rgba(245,240,232,.68);max-width:440px}
+.wine-tag{font-size:10px;letter-spacing:.1em;color:rgba(245,240,232,.55);background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);padding:4px 9px;display:inline-flex;align-items:center;gap:6px}
+.icon-svg {
+  width: 1.2em;
+  height: 1.2em;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  vertical-align: middle;
+}
+.wine-tag .icon-svg { width: 13px; height: 13px; }
+.wine-tag svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.5}
+
+.agro-step-icon svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.5;display:block}
+.wine-desc{font-family:'Libre Baskerville',serif;font-style:italic;font-size:13px;line-height:1.8;color:rgba(245,240,232,.68);width:100%;text-align:justify}
 .wine-hero-rating{display:flex;align-items:center;gap:8px;margin-top:14px}
 .wine-hero-stars{font-size:17px;letter-spacing:2px;color:var(--gold)}
 .wine-hero-avg{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold)}
@@ -318,8 +380,7 @@ body.lang-al .wine-badge .ml-al{display:inline}
 .terroir-chip-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
 .terroir-chip-val{font-size:12px;color:rgba(45,8,16,.65);font-family:'Libre Baskerville',serif}
 
-.wine-body{padding:clamp(24px,4vw,48px) clamp(20px,5vw,52px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,44px)}
-@media(max-width:580px){.wine-body{grid-template-columns:1fr}}
+.wine-body{padding:clamp(24px,4vw,48px) clamp(20px,5vw,52px);display:block}
 
 /* ratings */
 .ratings-section{padding:clamp(24px,4vw,44px) clamp(20px,5vw,52px) clamp(40px,6vw,64px);border-top:1px solid rgba(74,14,26,.08)}
@@ -393,17 +454,20 @@ body.lang-al .wine-badge .ml-al{display:inline}
 
 /* Ch2 Manifesto */
 .ch2{background:var(--cream);padding:clamp(56px,9vw,96px) clamp(24px,7vw,80px);text-align:center;position:relative;overflow:hidden}
+.ch2-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;gap:12px;text-align:left}
 .ch2-bg-quote{position:absolute;top:-30px;left:clamp(10px,3vw,40px);font-family:'Cormorant Garamond',serif;font-size:clamp(100px,22vw,200px);color:rgba(74,14,26,.05);line-height:1;pointer-events:none;user-select:none}
 .ch2-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,6vw,46px);font-weight:300;font-style:italic;color:var(--burgundy);line-height:1.3;position:relative;z-index:1;margin-bottom:18px}
 .ch2-attr{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);position:relative;z-index:1}
 
 /* Ch3 History */
 .ch3{background:var(--warm-white);padding:clamp(44px,7vw,80px) clamp(24px,5vw,52px)}
+.ch3-header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;text-align:left}
+.ch3-big{font-family:'Cormorant Garamond',serif;font-size:clamp(70px,18vw,140px);font-weight:300;color:rgba(74,14,26,.055);line-height:1;flex-shrink:0}
 .ch3-tag{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(74,14,26,.3);margin-bottom:4px;display:block}
 .ch3-tag::after{content:'';flex:1;height:1px;background:rgba(74,14,26,.1)}
 .ch3-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,6vw,42px);font-weight:300;color:var(--burgundy);line-height:1.15;margin-bottom:8px}
 .ch3-divider{width:52px;height:1px;background:var(--gold);margin:20px 0}
-.ch3-body{font-family:'Libre Baskerville',serif;font-size:14px;line-height:1.9;color:rgba(45,8,16,.7)}
+.ch3-body{font-family:'Libre Baskerville',serif;font-size:14px;line-height:1.9;color:rgba(45,8,16,.7);text-align:justify}
 .ch3-body+.ch3-body{margin-top:16px}
 
 /* Ch5 Terroir */
@@ -418,13 +482,16 @@ body.lang-al .wine-badge .ml-al{display:inline}
 .t-card--mid:hover{background:#5c1122;transform:translateY(-3px)}
 .t-card--mid .t-name{color:var(--cream)}
 .t-card--mid .t-desc{color:rgba(245,240,232,.6)}
-.t-card--mid .t-num{color:rgba(201,168,76,.2)}
+.t-card-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:16px}
+.t-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:rgba(74,14,26,.07);line-height:1}
+.t-card--mid .t-num{color:rgba(201,168,76,0.12)}
 .t-card--mid .t-line{background:rgba(201,168,76,.3)}
-.t-num{font-size:10px;letter-spacing:.2em;color:rgba(74,14,26,.18);margin-bottom:12px;font-family:'Cormorant Garamond',serif}
-.t-icon{font-size:24px;margin-bottom:11px;display:block}
+.t-icon{font-size:24px;margin-bottom:11px;display:block;color:var(--gold)}
+.t-icon svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.5;display:block}
+.t-card-header .t-icon{margin-bottom:6px}
 .t-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--burgundy);margin-bottom:9px}
 .t-line{width:28px;height:2px;background:var(--gold);margin-bottom:11px}
-.t-desc{font-size:12px;line-height:1.75;color:rgba(45,8,16,.6)}
+.t-desc{font-size:12px;line-height:1.75;color:rgba(45,8,16,.6);text-align:justify}
 
 /* Ch6 Philosophy */
 .ch6{background:var(--deep-wine);padding:clamp(44px,7vw,80px) clamp(24px,5vw,52px);position:relative;overflow:hidden}
@@ -436,19 +503,20 @@ body.lang-al .wine-badge .ml-al{display:inline}
 .ch6-pillar{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:clamp(20px,3vw,30px)}
 .ch6-pillar-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,168,76,.22);line-height:1;margin-bottom:12px}
 .ch6-pillar-title{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--gold-light);font-weight:300;margin-bottom:9px}
-.ch6-pillar-desc{font-size:12px;line-height:1.75;color:rgba(245,240,232,.5)}
+.ch6-pillar-desc{font-size:12px;line-height:1.75;color:rgba(245,240,232,.5);text-align:justify}
 
 /* Lake Neuron */
 .neuron-block{background:linear-gradient(135deg,var(--deep-wine),#000000,var(--burgundy));padding:clamp(44px,7vw,80px) clamp(24px,5vw,52px)}
 .neuron-eyebrow{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px}
 .neuron-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,6vw,48px);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:18px}
 .neuron-rule{width:44px;height:2px;background:var(--gold-light);margin-bottom:18px;opacity:.5}
-.neuron-body{font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.6);max-width:680px;margin-bottom:22px}
+.neuron-body{font-family:'Libre Baskerville',serif;font-size:13px;line-height:1.9;color:rgba(245,240,232,.6);width:100%;margin-bottom:22px;text-align:justify}
 .neuron-cta{display:inline-block;border:1px solid rgba(201,168,76,.4);color:var(--gold-light);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:12px 22px;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:transparent;margin-bottom:36px}
 .neuron-cta:hover{background:rgba(201,168,76,.1)}
 .neuron-depth{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
 .n-chip{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);padding:10px 14px;display:flex;align-items:center;gap:8px}
-.n-chip-icon{font-size:16px;flex-shrink:0}
+.n-chip-icon{font-size:16px;flex-shrink:0;color:var(--gold-light)}
+.n-chip-icon svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;display:block}
 .n-chip-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:2px}
 .n-chip-val{font-size:11px;color:rgba(245,240,232,.5)}
 
@@ -474,12 +542,15 @@ body.lang-al .wine-badge .ml-al{display:inline}
 @media(max-width:380px){.agro-steps{grid-template-columns:1fr}}
 .agro-step{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:clamp(16px,2vw,24px) clamp(14px,2vw,20px)}
 .agro-step--accent{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.22)}
-.agro-step-num{font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:.2em;color:rgba(201,168,76,.28);margin-bottom:10px}
-.agro-step-icon{font-size:22px;margin-bottom:10px;display:block}
+.agro-step-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:16px}
+.agro-step-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:rgba(201,168,76,0.12);line-height:1}
+.agro-step-icon{font-size:22px;display:block;color:var(--gold-light)}
+.agro-step-header .agro-step-icon{margin-bottom:6px}
 .agro-step-title{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold-light);margin-bottom:8px;font-weight:300}
-.agro-step-desc{font-size:12px;line-height:1.7;color:rgba(245,240,232,.48)}
+.agro-step-desc{font-size:12px;line-height:1.7;color:rgba(245,240,232,.48);text-align:justify}
 .agro-harvest{display:flex;align-items:center;gap:14px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);padding:14px 18px;flex-wrap:wrap}
 .agro-harvest-icon{font-size:20px;flex-shrink:0}
+.agro-harvest-icon svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.5;display:block}
 .agro-harvest-lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,168,76,.5);margin-bottom:3px}
 .agro-harvest-val{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream)}
 
@@ -515,7 +586,7 @@ body.lang-al .wine-badge .ml-al{display:inline}
 .video-section{background:var(--cream);padding:clamp(28px,6vw,48px) clamp(20px,5vw,52px);display:grid;gap:22px;justify-items:center;text-align:center}
 .video-frame{width:100%;max-width:980px;aspect-ratio:16/9;overflow:hidden;border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.12);background:#000}
 .video-player{width:100%;height:100%;object-fit:cover;background:#000}
-.video-copy{max-width:860px;color:rgba(45,8,16,.92);font-size:clamp(0.95rem,1vw,1.05rem);line-height:1.85}
+.video-copy{width:100%;color:rgba(45,8,16,.92);font-size:clamp(0.95rem,1vw,1.05rem);line-height:1.85;text-align:justify}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;max-height:9999px;overflow:hidden;opacity:1;transition:max-height .35s ease,opacity .35s ease}
 @media(max-width:900px){.video-frame{max-width:100%}}
 @media(max-width:600px){.gallery-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px}}@media(max-width:480px){.gallery-grid{grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px}}
@@ -552,7 +623,7 @@ body.lang-al .wine-badge .ml-al{display:inline}
 .gallery-header{display:flex;align-items:center;justify-content:flex-end;margin-bottom:14px}
 .gallery-toggle-btn{background:transparent;border:1px solid rgba(74,14,26,.08);padding:8px 12px;border-radius:6px;color:var(--burgundy);cursor:pointer;font-size:12px;transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease}
 .gallery-section.collapsed .gallery-toggle-btn{background:var(--burgundy);color:var(--cream);border-color:var(--burgundy)}
-.ws-note{font-family:'Libre Baskerville',serif;font-style:italic;font-size:11px;color:rgba(245,240,232,.35);margin-top:2px;line-height:1.4}
+.ws-note{font-family:'Libre Baskerville',serif;font-style:italic;font-size:11px;color:rgba(245,240,232,.35);margin-top:2px;line-height:1.4;text-align:justify}
 .ws-type{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.48);flex-shrink:0}
 .ws-arrow{color:var(--gold);font-size:17px;flex-shrink:0;opacity:.5;transition:opacity .2s,transform .2s}
 .ws-item:hover .ws-arrow{opacity:1;transform:translateX(4px)}
@@ -578,10 +649,10 @@ body.lang-al .wine-badge .ml-al{display:inline}
   opacity: 0; animation: heroCinematic 32s infinite; 
   will-change: transform, opacity;
 }
-.l-slide:nth-child(1){ background-image:url('images/img-01.jpg'); animation-delay: 0s; }
+.l-slide:nth-child(1){ background-image:url('images/img-04.jpg'); animation-delay: 0s; }
 .l-slide:nth-child(2){ background-image:url('images/img-02.jpg'); animation-delay: 8s; }
 .l-slide:nth-child(3){ background-image:url('images/img-03.jpg'); animation-delay: 16s; }
-.l-slide:nth-child(4){ background-image:url('images/img-04.jpg'); animation-delay: 24s; }
+.l-slide:nth-child(4){ background-image:url('images/img-01.jpg'); animation-delay: 24s; }
 
 @keyframes heroCinematic {
   0%    { opacity:0; transform: scale(1.0); }
@@ -685,7 +756,8 @@ body.lang-al .wine-badge .ml-al{display:inline}
   .wines-dropdown.open .wd-item:nth-child(4){opacity:1;transform:none;transition-delay:.26s}
   .wd-item:hover{background:rgba(201,168,76,.07)}
   .wd-item:last-child{border-bottom:none}
-  .wd-icon{font-size:20px;flex-shrink:0;width:28px;text-align:center}
+  .wd-icon{font-size:20px;flex-shrink:0;width:28px;text-align:center;color:var(--gold)}
+  .wd-icon .icon-svg { stroke: var(--gold); } /* Ensure SVG stroke is gold */
   .wd-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--cream);flex:1;letter-spacing:.03em}
   .wd-type{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.5);flex-shrink:0}
   .wines-dropdown-backdrop{display:none;position:fixed;inset:0;z-index:198}
@@ -701,10 +773,10 @@ body.lang-al .wine-badge .ml-al{display:inline}
   opacity:0;
   animation:heroFade 32s infinite;
 }
-.hero-slide:nth-child(1){ background-image:url('images/img-01.jpg');  animation-delay:0s }
+.hero-slide:nth-child(1){ background-image:url('images/img-04.jpg');  animation-delay:0s }
 .hero-slide:nth-child(2){ background-image:url('images/img-02.jpg');  animation-delay:8s }
 .hero-slide:nth-child(3){ background-image:url('images/img-03.jpg');    animation-delay:16s }
-.hero-slide:nth-child(4){ background-image:url('images/img-04.jpg');    animation-delay:24s }
+.hero-slide:nth-child(4){ background-image:url('images/img-01.jpg');    animation-delay:24s }
 
 @keyframes heroFade {
   0%    { opacity:0 }
@@ -830,3 +902,53 @@ body.lang-en .wps-type[data-lang="en"],body.lang-al .wps-type[data-lang="al"]{di
 }
 .contact-social-link:hover { background:rgba(74,14,26,.08); border-color:rgba(74,14,26,.3); }
 .contact-social-link svg { flex-shrink:0; color:var(--deep-wine); }
+
+/* Footer */
+.site-footer {
+  padding: 60px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(74, 14, 26, 0.06);
+}
+.footer-copy {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(45, 8, 16, 0.4);
+}
+
+/* Wine Spec Chips */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+@media (max-width: 560px) {
+  .spec-grid { grid-template-columns: 1fr; }
+}
+.spec-chip {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+.spec-chip:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.spec-icon-circle {
+  width: 40px; height: 40px;
+  background: rgba(201, 168, 76, 0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+.spec-icon-circle .icon-svg { width: 22px; height: 22px; stroke-width: 1.5; }
+.spec-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 2px; }
+.spec-val { font-family: 'Libre Baskerville', serif; font-size: 12px; color: rgba(245, 240, 232, 0.7); line-height: 1.4; }
