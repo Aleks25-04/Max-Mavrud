@@ -198,13 +198,13 @@ body.lang-al .ml-al{display:inline}
 .wheel-label {
   font-family: 'Raleway', sans-serif;
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   fill: #ffffff;
   paint-order: stroke;
   stroke: var(--deep-wine);
-  stroke-width: 2.5px;
+  stroke-width: 1.5px;
 }
 
 /* pairing grid */
